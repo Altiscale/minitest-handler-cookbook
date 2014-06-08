@@ -1,6 +1,30 @@
 Changelog
 =====
 
+### 1.2.2 (UNRELEASED)
+* [#62](https://github.com/btm/minitest-handler-cookbook/issues/62) -
+  Increase default version of `chef_handler_gem` from 1.0.1 to 1.0.2. If for some reason
+  you wish to avoid 1.0.2 ensure you set a value of 1.0.1 for `node[:minitest][:chef_handler_gem_version]`
+* [#61](https://github.com/btm/minitest-handler-cookbook/pull/61) -
+  Fix bug where Windows drive letters would cause errors when fetching cookbook files
+
+### 1.2.0 (Apr 23, 2014)
+* Fixed bug where a test file saved in `files/default` (instead of one of the documented
+  paths) would get processed. If you were previously relying on this unintended
+  behaviour you will need to move your test files into `files/default/test/`.
+  A warning will be logged if any of these files are found to help you identify
+  if this change affects you.
+* Efficiency Improvement. Previously all test files for a given cookbook would be downloaded
+  to a temp directory regardless of if they were needed or not. Now only test files that
+  are actually needed will be downloaded
+* [#58](https://github.com/btm/minitest-handler-cookbook/issues/58) -
+  Expand use of `node[:minitest][:filter]`. Previously the filter would be
+  applied to the execution of minitest, however files not matching the filter could
+  still be downloaded but not executed. Now *test file names* not matching the filter
+  won't be downloaded at all.
+* Rubocop cleanup
+
+
 ### 1.1.4 (Nov 14, 2013)
 * Apply workaround for for [build tools issues](http://lists.opscode.com/sympa/arc/chef/2013-11/msg00011.html)
 * [#57](https://github.com/btm/minitest-handler-cookbook/pull/57) -
